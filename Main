@@ -3,6 +3,8 @@ if placeId == 140699359360137 then -- Reimagined
     loadstring(game:HttpGet("https://raw.githubusercontent.com/VyxHub/Sources/refs/heads/main/Reimagined.lua"))()
 elseif placeId == 140340279062020 then --  Legends
     loadstring(game:HttpGet("https://raw.githubusercontent.com/VyxHub/Sources/refs/heads/main/Legends.lua"))()
+elseif placeId == 77054612406998 then --  power legends
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/VyxHub/Sources/refs/heads/main/Legends.lua"))()
 elseif placeId == 118525132152896 then -- United
     loadstring(game:HttpGet("https://raw.githubusercontent.com/VyxHub/Sources/refs/heads/main/United.lua"))()
 elseif placeId == 139862517286509 then -- PTSX
