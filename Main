@@ -1,4 +1,5 @@
 local placeId = game.PlaceId
+local gameId = game.GameId
 if placeId == 140699359360137 then -- Reimagined
     loadstring(game:HttpGet("https://raw.githubusercontent.com/VyxHub/Sources/refs/heads/main/Reimagined.lua"))()
 elseif placeId == 140340279062020 then --  Legends
@@ -9,6 +10,8 @@ elseif placeId == 118525132152896 then -- United
     loadstring(game:HttpGet("https://raw.githubusercontent.com/VyxHub/Sources/refs/heads/main/United.lua"))()
 elseif placeId == 139862517286509 then -- PTSX
     loadstring(game:HttpGet("https://raw.githubusercontent.com/VyxHub/Sources/refs/heads/main/PowerTrainingSimX.lua"))()
+elseif gameId == 2491559356 then -- CTS
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/VyxHub/Sources/refs/heads/main/CTS.lua"))()
 else
     warn("No script found for PlaceId: " .. placeId)
 end   
