@@ -1,18 +1,29 @@
-local placeId = game.PlaceId
-local gameId = game.GameId
-if placeId == 140699359360137 then -- Reimagined
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/VyxHub/Sources/refs/heads/main/Reimagined.lua"))()
-elseif placeId == 140340279062020 then --  Legends
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/VyxHub/Sources/refs/heads/main/Legends.lua"))()
-elseif placeId == 77054612406998 then --  power legends
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/VyxHub/Sources/refs/heads/main/PowerLegends.lua"))()
-elseif placeId == 118525132152896 then -- United
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/VyxHub/Sources/refs/heads/main/United.lua"))()
-elseif placeId == 139862517286509 then -- PTSX
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/VyxHub/Sources/refs/heads/main/PowerTrainingSimX.lua"))()
-elseif gameId == 2491559356 then -- CTS
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/VyxHub/Sources/refs/heads/main/CTS.lua"))()
+if not game:IsLoaded() then game.Loaded:Wait() end
+
+local BASE_URL = "https://raw.githubusercontent.com/VyxHub/Games/refs/heads/main/"
+
+local placeScripts = {
+    [140699359360137] = "Reimagined.lua",
+    [140340279062020] = "Legends.lua",
+    [77054612406998]  = "PowerLegends.lua",
+    [118525132152896] = "United.lua",
+    [139862517286509] = "PowerTrainingSimX.lua",
+}
+
+local gameScripts = {
+    [2491559356] = "CTS.lua",
+}
+
+local scriptFile = placeScripts[game.PlaceId] or gameScripts[game.GameId]
+
+if scriptFile then
+    local success, err = pcall(function()
+        loadstring(game:HttpGet(BASE_URL .. scriptFile))()
+    end)
+
+    if not success then
+        warn("VyxHub: Failed to fetch " .. scriptFile .. " - " .. tostring(err))
+    end
 else
-    warn("No script found for PlaceId: " .. placeId)
-    warn("No script found for GameId: ".. gameId)
-end   
+    warn("VyxHub: Unsupported Game (PlaceId: " .. game.PlaceId .. " | GameId: " .. game.GameId .. ")")
+end
