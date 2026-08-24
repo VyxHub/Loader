@@ -1,6 +1,6 @@
 if not game:IsLoaded() then game.Loaded:Wait() end
 
-local BASE_URL = "https://raw.githubusercontent.com/VyxHub/Games/refs/heads/main/"
+local BASE_URL = "https://raw.githubusercontent.com/VyxHub/Games/main/"
 
 local placeScripts = {
     [140699359360137] = "Reimagined.lua",
@@ -17,12 +17,20 @@ local gameScripts = {
 local scriptFile = placeScripts[game.PlaceId] or gameScripts[game.GameId]
 
 if scriptFile then
+    local url = BASE_URL .. scriptFile
     local success, err = pcall(function()
-        loadstring(game:HttpGet(BASE_URL .. scriptFile))()
+        local response = game:HttpGet(url)
+        if not response or response == "" then
+            error("Empty response - HTTP may be disabled in executor settings")
+        end
+        loadstring(response)()
     end)
 
     if not success then
-        warn("VyxHub: Failed to fetch " .. scriptFile .. " - " .. tostring(err))
+        warn("VyxHub: Failed to fetch " .. scriptFile)
+        warn("URL: " .. url)
+        warn("Error: " .. tostring(err))
+        warn("Fix: Enable HTTP requests in your executor settings")
     end
 else
     warn("VyxHub: Unsupported Game (PlaceId: " .. game.PlaceId .. " | GameId: " .. game.GameId .. ")")
